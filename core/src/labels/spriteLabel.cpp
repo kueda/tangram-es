@@ -232,7 +232,8 @@ void SpriteLabel::addVerticesToMesh(ScreenTransform& _transform, const glm::vec2
         m_vertexAttrib.outlineColor,
         m_vertexAttrib.outlineEdge,
         m_vertexAttrib.antialiasFactor,
-        uint16_t(m_alpha * SpriteVertex::alpha_scale)
+        uint16_t(m_alpha * SpriteVertex::alpha_scale),
+        0
     };
 
     auto* quadVertices = m_labels.m_style.pushQuad(m_texture);

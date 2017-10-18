@@ -21,7 +21,7 @@ struct SpriteVertex {
         uint16_t outline_edge;
         uint16_t antialias_factor;
         uint16_t alpha;
-        uint16_t padding = 0;
+        uint16_t padding;
     } state;
 
     static const float alpha_scale;
