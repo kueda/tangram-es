@@ -39,19 +39,16 @@ void main(void) {
         vec2 uv = v_texcoords * 2. - 1.;
         float point_dist = length(uv);
 
-        color = mix(color,
-                    v_outline_color,
-                    (1. - smoothstep(v_outline_edge - v_aa_factor,
-                                     v_outline_edge + v_aa_factor,
-                                     1. - point_dist))
-                    * step(.000001, v_outline_edge));
+        color = mix(color, v_outline_color,
+                    1. - smoothstep(v_outline_edge - v_aa_factor,
+                                    v_outline_edge + v_aa_factor,
+                                    1. - point_dist));
 
         color.a = mix(color.a, 0., (smoothstep(max(1. - v_aa_factor, 0.), 1., point_dist)));
     } else {
-        vec4 texColor = texture2D(u_tex, v_texcoords);
-        color = vec4(texColor.rgb * color.rgb, v_alpha * texColor.a * color.a);
-
+        color *= texture2D(u_tex, v_texcoords);
     }
+    color.a *= v_alpha;
 
     #pragma tangram: color
     #pragma tangram: filter
