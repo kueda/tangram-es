@@ -46,7 +46,7 @@ std::vector<FontSourceHandle> RpiPlatform::systemFontFallbacksHandle() const {
     std::vector<FontSourceHandle> handles;
 
     for (auto& path : fallbackFonts) {
-        handles.emplace_back(path);
+        handles.emplace_back(Url(path));
     }
 
     return handles;
@@ -59,7 +59,7 @@ FontSourceHandle RpiPlatform::systemFont(const std::string& _name, const std::st
 
     if (fontFile.empty()) { return {}; }
 
-    return FontSourceHandle(fontFile, true);
+    return FontSourceHandle(Url(fontFile));
 }
 
 bool RpiPlatform::startUrlRequest(const std::string& _url, UrlCallback _callback) {

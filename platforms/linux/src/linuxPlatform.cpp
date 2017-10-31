@@ -50,7 +50,7 @@ std::vector<FontSourceHandle> LinuxPlatform::systemFontFallbacksHandle() const {
     std::vector<FontSourceHandle> handles;
 
     for (auto& path : fallbackFonts) {
-        handles.emplace_back(path);
+        handles.emplace_back(Url(path));
     }
 
     return handles;
@@ -63,7 +63,7 @@ FontSourceHandle LinuxPlatform::systemFont(const std::string& _name, const std::
 
     if (fontFile.empty()) { return {}; }
 
-    return FontSourceHandle(fontFile, false);
+    return FontSourceHandle(Url(fontFile));
 }
 
 UrlRequestHandle LinuxPlatform::startUrlRequest(Url _url, UrlCallback _callback) {
